@@ -1,0 +1,401 @@
+car_id,license_plate	,model,manufacturer,cyear,status,price_per_day,num_seats,branch_id
+4,4587284,E-Class,Mercedes-Benz,1992,In Maintenance,194.09,4,286
+5,1650495,MKZ,Lincoln,2008,In Maintenance,366.36,9,291
+6,4550197,Spyder,Maserati,1989,Available,387.09,4,285
+7,8485335,Maxima,Nissan,2011,In Maintenance,429.81,4,70
+8,5022624,Riviera,Buick,1998,In Maintenance,239.36,5,215
+9,7321343,Pathfinder,Nissan,1993,Available,367.63,5,195
+10,5867706,Minx Magnificent,Hillman,1950,Rented,163.56,7,296
+11,3440488,G,Infiniti,1999,Rented,245.45,9,377
+12,3395169,Avalon,Toyota,2004,Available,491.96,4,35
+13,7838679,MPV,Mazda,1993,Available,280.88,12,139
+14,8166195,Z3,BMW,1997,Available,123.42,4,336
+15,2362426,Seville,Cadillac,1994,Available,205.77,12,73
+16,9207302,DBS,Aston Martin,2009,In Maintenance,253.73,2,385
+17,7227755,Suburban 2500,GMC,1997,Rented,439.56,9,220
+18,5258272,NSX,Acura,2003,Rented,157.88,2,394
+19,3969286,SL-Class,Mercedes-Benz,1999,Rented,232.27,12,178
+20,1742683,E-Class,Mercedes-Benz,1991,In Maintenance,162.92,5,318
+21,2283264,Silverado Hybrid,Chevrolet,2006,Rented,442.94,4,124
+22,7092382,Aviator,Lincoln,2004,In Maintenance,191.32,2,199
+23,8774542,Outlook,Saturn,2010,Available,280.73,4,245
+24,9000945,Corolla,Toyota,1996,Available,357.74,2,139
+25,7984881,Challenger,Mitsubishi,1999,In Maintenance,225.61,4,378
+26,3847845,Silverado 1500,Chevrolet,2012,Available,218.39,2,194
+27,6672977,Silverado,Chevrolet,2001,Rented,376.15,2,400
+28,1890954,Optima,Kia,2008,Available,483.17,9,25
+29,4838250,MKZ,Lincoln,2012,Available,230.76,7,361
+30,2078130,Uplander,Chevrolet,2005,In Maintenance,217.94,7,274
+31,8780656,L300,Mitsubishi,1989,Rented,130.98,9,158
+32,2009881,Continental,Lincoln,1988,In Maintenance,351.63,4,248
+33,4198374,Acadia,GMC,2011,Rented,337.05,9,241
+34,4362667,Seville,Cadillac,1995,In Maintenance,172.39,2,86
+35,5015638,Corolla,Toyota,2005,Available,233.74,2,180
+36,1066787,SVX,Subaru,1993,Available,494.58,4,228
+37,7072085,Insight,Honda,2005,Available,288.37,7,390
+38,4641001,Dakota,Dodge,2003,Rented,331.54,9,245
+39,8359773,Expedition,Ford,1998,In Maintenance,221.55,2,40
+40,5531013,MDX,Acura,2002,Available,202.32,5,228
+41,8892251,Intrepid,Dodge,2004,Available,439.07,7,132
+42,9520883,Miata MX-5,Mazda,1999,Available,341.32,12,263
+43,2247985,Camaro,Chevrolet,1999,Rented,326.75,2,212
+44,7012668,Canyon,GMC,2010,In Maintenance,198.27,2,258
+45,8959817,Elantra,Hyundai,2001,In Maintenance,317.08,2,174
+46,7169288,HHR,Chevrolet,2009,Available,160.55,5,310
+47,1755420,Passat,Volkswagen,2005,In Maintenance,374.61,9,41
+48,3244468,Legacy,Subaru,2005,Rented,418.43,2,210
+49,7768552,PT Cruiser,Chrysler,2009,In Maintenance,235.05,12,370
+50,1986786,Metro,Geo,1997,Available,313.7,9,211
+51,3208440,V70,Volvo,2000,In Maintenance,453.94,7,284
+52,7352261,240,Volvo,1993,In Maintenance,183.73,4,284
+53,9798631,Grand Cherokee,Jeep,1996,In Maintenance,339.64,7,168
+54,1804741,911,Porsche,1994,Rented,430.94,7,273
+55,7347597,Tempo,Ford,1993,In Maintenance,217.55,9,66
+56,1645531,Tracker,Geo,1996,Available,207.01,7,173
+57,3147778,Stratus,Dodge,1995,Rented,247.96,5,259
+58,5134609,Ciera,Oldsmobile,1994,In Maintenance,318.17,7,371
+59,8229353,Carrera GT,Porsche,2004,Rented,347.72,7,116
+60,9500583,RSX,Acura,2003,Rented,316.8,2,83
+61,4877228,Seville,Cadillac,2004,In Maintenance,462.73,7,178
+62,4915337,GTO,Mitsubishi,1995,In Maintenance,338.46,12,79
+63,1472117,Sentra,Nissan,2007,Rented,264.67,5,114
+64,2305817,Passat,Volkswagen,1988,Rented,259.09,9,361
+65,8090701,SJ,Suzuki,1990,Rented,180.36,7,372
+66,2355152,Vitara,Suzuki,2004,Rented,455.09,2,256
+67,9672217,Mentor,Kia,1997,Rented,338.84,4,399
+68,9333902,Vandura G3500,GMC,1996,Rented,240.22,9,387
+69,2115673,Tacoma,Toyota,2002,Available,104.02,9,257
+70,9320281,Venture,Chevrolet,2005,Rented,385.58,12,139
+71,9462572,CR-V,Honda,2011,In Maintenance,172.87,12,343
+72,8386751,GTI,Volkswagen,1996,In Maintenance,134.1,9,335
+73,6504813,240,Volvo,1993,Available,243.68,12,66
+74,4363144,Sunfire,Pontiac,1995,Available,439.95,7,214
+75,7973598,M-Class,Mercedes-Benz,2001,Available,207.62,12,285
+76,1339582,Baja,Subaru,2003,Rented,323.21,9,112
+77,5856422,Sable,Mercury,1999,In Maintenance,354.32,5,89
+78,5961271,Civic,Honda,2001,In Maintenance,156.27,12,149
+79,2323944,90,Audi,1994,Available,278.64,5,201
+80,5788595,Defender Ice Edition,Land Rover,2010,Available,173.95,2,56
+81,9732584,Transit Connect,Ford,2012,In Maintenance,125.21,4,9
+82,5208770,V70,Volvo,2002,Rented,393.54,12,303
+83,2841052,S-Class,Mercedes-Benz,2010,Available,371.26,5,100
+84,4048419,Z4,BMW,2006,In Maintenance,151.85,12,274
+85,6750438,Econoline E150,Ford,1994,Rented,446.61,9,118
+86,7058780,Supra,Toyota,1992,In Maintenance,175.56,5,243
+87,5088233,8 Series,BMW,1995,Rented,475.16,12,234
+88,5460498,Murano,Nissan,2009,In Maintenance,337.54,5,387
+89,7801354,Navigator L,Lincoln,2011,In Maintenance,406.0,12,305
+90,8039092,Econoline E250,Ford,1999,In Maintenance,160.74,9,315
+91,1296313,Pacifica,Chrysler,2008,Rented,167.75,4,59
+92,9810171,Sebring,Chrysler,2009,In Maintenance,167.06,9,379
+93,6988194,Metro,Chevrolet,2001,Rented,153.55,4,31
+94,1320711,MX-5,Mazda,2012,In Maintenance,493.14,4,226
+95,8068834,Galant,Mitsubishi,1998,In Maintenance,132.05,4,146
+96,1492766,Grand Cherokee,Jeep,2006,Rented,202.82,2,327
+97,1809502,Equinox,Chevrolet,2010,Available,392.11,5,117
+98,1555793,xB,Scion,2009,Rented,467.08,9,313
+99,2115560,Expedition,Ford,1999,In Maintenance,239.37,5,67
+100,7543863,Ascender,Isuzu,2003,Available,346.6,12,115
+101,3885372,Discovery,Land Rover,2001,Rented,189.28,7,113
+102,1166103,LTD,Ford,1985,Rented,424.08,4,102
+103,3077896,RDX,Acura,2011,Available,171.34,7,270
+104,2306591,Firebird,Pontiac,2002,Available,397.17,9,276
+105,2454108,Tiguan,Volkswagen,2011,Available,219.77,2,391
+106,5196641,TT,Audi,2004,Rented,199.53,2,76
+107,7507933,A4,Audi,2011,Available,221.71,5,244
+108,8866747,Stratus,Dodge,2005,Rented,408.71,5,380
+109,8819368,Touareg,Volkswagen,2004,Available,454.56,7,248
+110,9912914,911,Porsche,1988,Rented,427.37,12,358
+111,8883800,Grand Marquis,Mercury,2000,In Maintenance,209.25,2,303
+112,9263646,Dakota,Dodge,1995,Available,305.01,7,320
+113,9045741,TT,Audi,2002,In Maintenance,409.77,9,46
+114,7835226,G,Infiniti,2004,Rented,140.77,9,101
+115,5062632,C70,Volvo,2000,In Maintenance,115.47,9,326
+116,8268567,Crown Victoria,Ford,2006,Available,484.96,2,132
+117,9300512,Camaro,Chevrolet,1995,Available,435.86,5,113
+118,8398739,Miata MX-5,Mazda,1994,In Maintenance,352.87,4,288
+119,2943134,LS,Lexus,2007,Rented,442.39,12,25
+120,6665380,Maxima,Nissan,1997,In Maintenance,384.57,12,171
+121,7520036,CLK-Class,Mercedes-Benz,2004,Available,405.36,2,173
+122,7863380,Liberty,Jeep,2005,Rented,418.32,2,363
+123,1420463,Cougar,Mercury,1996,Rented,442.8,12,177
+124,9495990,Sable,Mercury,1998,Available,118.78,9,339
+125,5235832,Defender,Land Rover,1994,In Maintenance,401.76,7,176
+126,6770392,Tundra,Toyota,2004,In Maintenance,328.32,12,10
+127,4458736,Discovery,Land Rover,2002,In Maintenance,294.08,12,77
+128,1864247,Q,Infiniti,2002,Rented,343.57,12,196
+129,4694038,Discovery,Land Rover,2012,Rented,187.01,2,58
+130,3911870,H2,Hummer,2007,Rented,438.6,9,295
+131,7391744,Ram,Dodge,2010,Rented,217.5,4,102
+132,3148416,Coachbuilder,Buick,1992,In Maintenance,373.85,7,259
+133,6327424,E-Series,Ford,2001,In Maintenance,488.16,5,128
+134,4583904,400SEL,Mercedes-Benz,1993,In Maintenance,238.32,4,102
+135,3322022,Sonoma,GMC,1999,In Maintenance,209.87,2,209
+136,2675701,Grand Prix,Pontiac,1988,In Maintenance,441.91,7,167
+137,3822191,Tempo,Ford,1992,In Maintenance,397.75,4,349
+138,3970225,Probe,Ford,1997,In Maintenance,284.35,7,170
+139,2468433,9000,Saab,1998,Rented,136.99,5,65
+140,6309897,Odyssey,Honda,2010,In Maintenance,131.32,12,124
+141,5035835,9-5,Saab,2001,Available,121.18,7,3
+142,9984702,Astro,Chevrolet,2000,Available,433.35,9,290
+143,7307604,S-Series,Saturn,1995,Rented,423.02,9,330
+144,5023098,PT Cruiser,Chrysler,2006,In Maintenance,308.53,12,202
+145,8973940,Excursion,Ford,2003,Available,132.53,12,335
+146,6311759,Fleetwood,Cadillac,1992,In Maintenance,340.34,2,309
+147,1538687,Montana SV6,Pontiac,2006,Rented,216.59,9,94
+148,1089832,Carrera GT,Porsche,2004,Available,191.27,7,184
+149,8385858,745,BMW,2003,Available,269.07,9,268
+150,7700394,RVR,Mitsubishi,1994,In Maintenance,377.04,2,279
+151,8579974,164,Alfa Romeo,1994,Available,196.39,4,187
+152,1046642,960,Volvo,1993,Rented,424.78,5,81
+153,2106264,Insight,Honda,2002,Available,125.58,5,210
+154,1514933,Legacy,Subaru,2000,Rented,199.77,7,171
+155,5847773,Tribute,Mazda,2004,In Maintenance,142.47,7,335
+156,7550290,Maxima,Nissan,2009,Rented,221.35,4,275
+157,5490411,rio,Volkswagen,2001,Available,100.54,12,316
+158,6587434,3 Series,BMW,2006,In Maintenance,135.43,2,265
+159,6856493,Enclave,Buick,2009,Rented,108.41,5,61
+160,6673126,1500,GMC,1995,Rented,197.56,12,247
+161,4036965,Thunderbird,Ford,1987,Available,280.42,12,138
+162,8675404,E-Class,Mercedes-Benz,2003,Available,148.6,7,78
+163,1969626,CTS,Cadillac,2006,Available,484.88,5,261
+164,3929154,Avenger,Dodge,1995,In Maintenance,311.17,4,383
+165,6996473,F-Series Super Duty,Ford,2011,Available,310.97,9,377
+166,8186459,Silverado 3500,Chevrolet,2006,In Maintenance,382.94,12,106
+167,5755975,New Yorker,Chrysler,1996,Available,431.15,9,149
+168,5726842,MX-5,Mazda,2012,In Maintenance,198.55,2,34
+169,3211624,Mark LT,Lincoln,2007,In Maintenance,179.11,2,56
+170,5046909,Xterra,Nissan,2003,Rented,202.5,2,46
+171,6416684,LHS,Chrysler,1995,In Maintenance,454.67,12,294
+172,2047748,F150,Ford,2003,Rented,109.6,5,112
+173,4191994,Thunderbird,Ford,1997,In Maintenance,156.23,9,315
+174,4101115,Escort,Ford,1999,In Maintenance,150.25,2,397
+175,5596181,Sierra 2500,GMC,2002,Rented,274.37,7,294
+176,8508131,CR-V,Honda,1999,Available,125.54,4,98
+177,4017987,Suburban 1500,Chevrolet,2002,Rented,306.06,2,128
+178,3260388,Rodeo,Isuzu,2003,Available,194.24,5,181
+179,1036980,Allante,Cadillac,1993,Rented,409.97,12,247
+180,5157752,Neon,Dodge,2000,In Maintenance,312.22,4,80
+181,7340231,Suburban 2500,Chevrolet,1996,In Maintenance,409.68,2,260
+182,1526159,MPV,Mazda,2002,In Maintenance,168.89,9,311
+183,1586236,LFA,Lexus,2012,In Maintenance,389.73,5,298
+184,7128765,Sierra 1500,GMC,2000,Available,331.87,2,10
+185,3947479,D150,Dodge,1993,Available,400.46,7,30
+186,1303070,Econoline E350,Ford,2002,Available,163.8,7,298
+187,4487385,Nitro,Dodge,2008,Available,339.65,5,198
+188,9887594,Viper,Dodge,2006,Available,189.46,12,371
+189,8017946,F-Series,Ford,1993,In Maintenance,178.8,12,331
+190,9811705,Frontier,Nissan,2005,Rented,166.44,2,150
+191,2559528,A6,Audi,2005,In Maintenance,328.49,12,364
+192,4170973,F-Series Super Duty,Ford,2012,Available,401.85,5,230
+193,4901300,X5,BMW,2004,In Maintenance,149.16,5,11
+194,1247934,Passat,Volkswagen,2010,Available,396.45,2,205
+195,9622051,Sparrow,Corbin,1999,Available,110.05,9,216
+196,7480437,F250,Ford,2005,Available,213.7,2,243
+197,5226289,Viper RT/10,Dodge,1993,In Maintenance,293.24,12,258
+198,4338804,100,Audi,1991,Rented,253.01,9,110
+199,2834484,G37,Infiniti,2010,Available,483.99,9,335
+200,3497785,9-5,Saab,2001,Available,143.9,9,146
+201,1716712,850,Volvo,1996,Available,391.36,5,189
+202,2190052,GS,Lexus,1998,Available,365.62,2,227
+203,7650841,ES,Lexus,1989,Available,329.24,5,179
+204,9545284,Aerostar,Ford,1989,In Maintenance,267.44,4,119
+205,2649316,Viper,Dodge,1998,Available,246.57,9,365
+206,4987243,C70,Volvo,2004,Rented,171.85,9,325
+207,6784806,Yukon XL 1500,GMC,2009,Available,428.96,12,171
+208,8878702,3500,Chevrolet,1995,Available,393.1,2,394
+209,2629030,Altima,Nissan,2012,Available,487.16,4,288
+210,9321270,Murciélago,Lamborghini,2005,In Maintenance,226.36,9,398
+211,8191199,Alcyone SVX,Subaru,1996,Rented,497.48,2,31
+212,2456547,Maxima,Nissan,2001,Rented,124.14,2,356
+213,2406450,Golf,Volkswagen,1989,Available,106.88,4,270
+214,7426911,300ZX,Nissan,1996,Rented,452.98,5,59
+215,7997898,Viper,Dodge,2003,In Maintenance,212.52,9,138
+216,4925967,GTO,Pontiac,1967,Available,335.57,12,200
+217,2120138,Countach,Lamborghini,1985,Available,394.62,5,1
+218,4196106,RSX,Acura,2006,In Maintenance,359.32,2,278
+219,9035355,Ram Van 3500,Dodge,2001,Available,356.17,4,236
+220,1237894,VS Commodore,Holden,1997,Available,189.46,4,230
+221,3246907,Sentra,Nissan,2004,Available,252.83,5,351
+222,5631324,1 Series,BMW,2008,In Maintenance,128.52,4,93
+223,6312829,Murano,Nissan,2005,In Maintenance,360.32,2,184
+224,7175292,Defender,Land Rover,1994,In Maintenance,416.59,4,259
+225,4564229,Sidekick,Suzuki,1991,Available,402.65,5,137
+226,7115866,Savana 3500,GMC,2007,Rented,441.63,9,116
+227,3338863,Cougar,Mercury,1992,Available,140.76,9,138
+228,2821076,Durango,Dodge,2011,Rented,327.27,12,147
+229,4630345,Econoline E350,Ford,2001,Available,126.18,4,346
+230,2594850,F350,Ford,2001,Rented,449.85,12,222
+231,5007422,Fit,Honda,2008,In Maintenance,304.88,5,196
+232,5689173,LS,Lexus,2009,In Maintenance,214.1,5,223
+233,7574235,Probe,Ford,1994,In Maintenance,423.42,4,58
+234,7147451,Montero Sport,Mitsubishi,2001,In Maintenance,325.89,9,307
+235,2562888,Corvette,Chevrolet,1975,In Maintenance,452.75,4,312
+236,5824598,Rio,Kia,2008,Available,176.9,9,301
+237,2869989,Golf,Volkswagen,2002,Available,266.47,9,94
+238,6759567,M3,BMW,1997,Available,105.54,2,238
+239,1129623,Savana 2500,GMC,2008,In Maintenance,430.34,12,8
+240,1991203,HHR,Chevrolet,2011,In Maintenance,309.63,2,160
+241,5442031,Cutlass Supreme,Oldsmobile,1997,In Maintenance,441.25,7,38
+242,7389964,Suburban 1500,Chevrolet,2005,In Maintenance,288.19,4,321
+243,5927254,Sunfire,Pontiac,2003,Rented,178.17,9,111
+244,5254786,Mustang,Ford,1986,Available,251.23,9,270
+245,3309774,C8 Laviolette,Spyker,2004,Available,380.92,5,390
+246,2206504,Truck,Mitsubishi,1993,Rented,273.79,5,168
+247,5428826,S10 Blazer,Chevrolet,1992,Available,426.85,7,138
+248,5275051,Grand Marquis,Mercury,1988,Rented,398.65,4,5
+249,8384912,525,BMW,2006,Available,292.26,9,348
+250,6107255,Achieva,Oldsmobile,1995,In Maintenance,254.02,5,85
+251,1181523,Quattroporte,Maserati,2007,Available,152.16,9,318
+252,3219710,Camry Solara,Toyota,2008,Available,177.08,4,75
+253,2769605,Silverado,Chevrolet,1999,Rented,246.63,5,55
+254,5203515,Quest,Nissan,1997,Available,294.15,9,58
+255,7845543,Highlander,Toyota,2002,Rented,375.24,5,389
+256,4485176,Impreza,Subaru,2007,Available,332.72,2,38
+257,7814317,Navigator,Lincoln,2004,Available,449.79,5,295
+258,5140235,F250,Ford,1996,Available,282.71,5,129
+259,6187348,Cabriolet,Volkswagen,1986,Available,472.39,2,260
+260,6964528,Tahoe,Chevrolet,2009,In Maintenance,317.07,5,321
+261,7930540,Mustang,Ford,2005,In Maintenance,214.57,4,184
+262,2908263,MDX,Acura,2005,Rented,127.98,4,287
+263,8233451,Camry,Toyota,1996,In Maintenance,372.2,7,87
+264,5478448,MKS,Lincoln,2009,Available,245.0,7,47
+265,1128082,Five Hundred,Ford,2006,Rented,388.2,9,277
+266,7566171,Matrix,Toyota,2011,In Maintenance,361.37,5,58
+267,3794313,Sportvan G30,Chevrolet,1995,Available,274.42,7,38
+268,1044097,Accord,Honda,1988,Rented,455.8,5,369
+269,4912535,S60,Volvo,2007,Rented,363.04,7,97
+270,2764177,S-Class,Mercedes-Benz,2009,In Maintenance,490.53,7,221
+271,1729380,QX,Infiniti,1997,In Maintenance,415.72,4,50
+272,3514879,LS,Lexus,2003,In Maintenance,323.88,12,20
+273,8493954,Ram Van B250,Dodge,1994,Available,185.61,12,51
+274,3839928,MKX,Lincoln,2012,Available,384.45,4,384
+275,3341651,Genesis Coupe,Hyundai,2011,In Maintenance,199.21,5,162
+276,9593985,Highlander,Toyota,2004,Rented,236.47,2,206
+277,6010424,Mulsanne,Bentley,2011,Rented,322.24,2,355
+278,4571533,CX-9,Mazda,2007,Available,240.94,12,77
+279,6170119,Phaeton,Volkswagen,2004,In Maintenance,387.5,2,239
+280,9778564,Astro,Chevrolet,2005,Rented,422.82,7,188
+281,1518787,Explorer Sport,Ford,2002,In Maintenance,220.62,9,346
+282,6161534,I,Infiniti,1998,Available,483.22,4,278
+283,3270972,S8,Audi,2003,Rented,405.54,12,81
+284,4254491,Aurora,Oldsmobile,2003,In Maintenance,149.22,12,334
+285,9107247,Vantage,Aston Martin,2009,In Maintenance,480.98,4,145
+286,3021934,SLR McLaren,Mercedes-Benz,2009,Available,107.88,7,167
+287,9937540,370Z,Nissan,2012,In Maintenance,182.64,2,101
+288,7243896,Interceptor,Jensen,1967,Available,461.58,2,307
+289,2555122,Quest,Nissan,2012,Rented,211.64,9,1
+290,6709747,Grand Marquis,Mercury,1999,Rented,465.42,12,306
+291,9099447,600SEL,Mercedes-Benz,1993,Available,481.57,12,147
+292,5504413,Camaro,Chevrolet,1973,Rented,128.75,5,238
+293,8233649,Monte Carlo,Chevrolet,1998,Available,394.72,2,215
+294,1671552,Thunderbird,Ford,2004,Available,122.17,9,386
+295,6427634,164,Alfa Romeo,1993,Rented,103.17,12,336
+296,4382981,Pathfinder,Nissan,2012,Rented,462.69,2,372
+297,5657395,X3,BMW,2012,In Maintenance,239.2,5,234
+298,7026535,Fox,Volkswagen,1989,Available,342.17,9,77
+299,5461258,Allroad,Audi,2003,Available,322.05,9,38
+300,6938572,Sierra 2500,GMC,2011,Available,227.45,7,271
+301,9980478,500SEC,Mercedes-Benz,1993,Rented,322.59,12,222
+302,4714812,Ram Wagon B150,Dodge,1994,Available,215.59,9,297
+303,1513388,Accord,Honda,1988,Available,222.9,9,188
+304,3826049,Aero 8,Morgan,2009,Rented,254.2,12,24
+305,5693276,Exige,Lotus,2005,In Maintenance,311.53,12,108
+306,3661774,CR-Z,Honda,2012,In Maintenance,247.82,5,198
+307,5456375,Pajero,Mitsubishi,1988,Rented,146.28,5,61
+308,2101031,Sable,Mercury,1988,Available,374.54,4,218
+309,8422981,Corvette,Chevrolet,2012,In Maintenance,230.17,2,14
+310,5695955,X3,BMW,2011,Rented,387.12,7,87
+311,9456855,Ram Van 2500,Dodge,1997,Available,425.72,5,327
+312,7791212,TL,Acura,2009,Available,130.53,5,165
+313,7011780,Escalade,Cadillac,2007,Available,405.36,2,329
+314,3709906,Sunbird,Pontiac,1991,In Maintenance,361.54,4,65
+315,5723104,TT,Audi,2002,In Maintenance,133.72,2,8
+316,5321254,Quattroporte,Maserati,2005,Rented,164.4,4,343
+317,2644275,Passat,Volkswagen,1996,Rented,115.49,9,41
+318,7378868,E350,Ford,2003,Rented,267.01,12,377
+319,4144038,Concorde,Chrysler,2000,Available,464.18,2,161
+320,8544220,Freelander,Land Rover,2004,Available,288.36,12,369
+321,2941413,Silverado 1500,Chevrolet,2005,Available,467.28,5,155
+322,3003811,Outlook,Saturn,2007,Available,477.81,4,323
+323,6763060,Intrigue,Oldsmobile,2002,Rented,268.17,4,215
+324,6513015,Grand Vitara,Suzuki,2002,In Maintenance,363.78,5,97
+325,4752326,Tiguan,Volkswagen,2012,Available,495.01,12,86
+326,7961205,Daewoo Lacetti,Suzuki,2007,Rented,100.71,12,6
+327,2472207,FX,Infiniti,2008,In Maintenance,247.83,4,272
+328,1512083,Avenger,Dodge,2008,In Maintenance,232.72,4,274
+329,3258388,928,Porsche,1995,Available,387.6,7,201
+330,9032677,Odyssey,Honda,2003,Rented,449.76,2,9
+331,5366521,9-3,Saab,2000,Available,224.55,5,212
+332,4613243,Sonoma Club Coupe,GMC,1996,In Maintenance,333.82,5,341
+333,9825281,Grand Prix,Pontiac,1962,Available,400.4,4,324
+334,5377597,Crown Victoria,Ford,2011,In Maintenance,483.47,5,281
+335,3487462,Focus,Ford,2012,Rented,483.48,9,126
+336,3700718,Vandura 3500,GMC,1994,In Maintenance,390.56,7,391
+337,9573237,Celica,Toyota,1992,Rented,104.0,4,380
+338,3912929,Explorer,Ford,2012,In Maintenance,196.57,4,124
+339,1957731,Savana 1500,GMC,1999,Available,203.2,2,133
+340,9198177,Continental,Lincoln,1990,In Maintenance,318.75,9,346
+341,4323707,LaCrosse,Buick,2005,Rented,154.46,12,340
+342,5457971,Bronco,Ford,1993,Rented,299.92,2,56
+343,5496378,2500,Ram,2011,Available,476.13,9,12
+344,1213688,STS,Cadillac,2008,In Maintenance,450.22,12,21
+345,8627092,Santa Fe,Hyundai,2003,Rented,270.93,4,123
+346,6887824,Elise,Lotus,2005,In Maintenance,250.36,4,301
+347,1085579,SL-Class,Mercedes-Benz,2005,In Maintenance,479.56,4,144
+348,4354952,Coupe Quattro,Audi,1991,In Maintenance,305.2,12,96
+349,3532982,Challenger,Mitsubishi,1998,In Maintenance,281.31,7,70
+350,1542767,QX56,Infiniti,2007,In Maintenance,186.06,5,205
+351,7534472,Tracer,Mercury,1997,In Maintenance,417.65,12,91
+352,2709648,Bravada,Oldsmobile,1997,In Maintenance,129.93,12,264
+353,9986680,Concorde,Chrysler,2004,Rented,426.74,2,242
+354,5077860,Tiguan,Volkswagen,2009,In Maintenance,319.76,5,124
+355,3882530,LeMans,Pontiac,1966,In Maintenance,267.85,9,150
+356,7247372,Daewoo Lacetti,Suzuki,2008,In Maintenance,134.27,4,148
+357,4723952,Accord,Honda,1984,In Maintenance,471.32,12,253
+358,6571216,VehiCROSS,Isuzu,2001,In Maintenance,138.73,2,89
+359,2520863,Celica,Toyota,1992,In Maintenance,374.39,12,260
+360,1848252,57,Maybach,2012,Available,499.43,12,97
+361,3143939,Sonata,Hyundai,2002,Available,375.03,5,396
+362,8119367,Regal,Buick,1998,Rented,156.24,7,143
+363,8519634,Familia,Mazda,1986,In Maintenance,453.9,2,83
+364,5183297,Type 2,Volkswagen,1987,In Maintenance,318.95,12,304
+365,8311692,CT,Lexus,2011,Rented,283.65,9,114
+366,2960738,Sprinter,Dodge,2009,Rented,495.32,2,275
+367,8759479,Tacoma,Toyota,1996,In Maintenance,393.36,12,262
+368,1728276,Chariot,Mitsubishi,1986,In Maintenance,383.27,9,294
+369,3159174,Golf,Volkswagen,1986,Available,159.16,7,208
+370,3761260,Fox,Volkswagen,1988,Rented,336.6,12,222
+371,4789833,3000GT,Mitsubishi,1992,Rented,463.96,12,236
+372,3502545,57,Maybach,2003,In Maintenance,260.75,12,232
+373,7332106,Prius,Toyota,2001,Available,231.02,9,381
+374,6359500,B9 Tribeca,Subaru,2007,Available,471.29,2,353
+375,2872377,Cabriolet,Volkswagen,2001,Rented,492.11,12,397
+376,5837361,Landaulet,Maybach,2011,Available,166.02,4,139
+377,4287954,9000,Saab,1994,In Maintenance,153.61,4,352
+378,4267479,Grand Marquis,Mercury,1997,In Maintenance,376.53,9,16
+379,7730872,3 Series,BMW,1996,Rented,278.75,7,272
+380,4876471,Envoy XL,GMC,2003,Rented,252.96,4,4
+381,6959192,Ram 2500,Dodge,1996,Available,446.26,7,309
+382,4205377,CLK-Class,Mercedes-Benz,2006,Available,253.53,12,231
+383,1659164,Sienna,Toyota,2004,Available,125.06,12,83
+384,3055771,Biturbo,Maserati,1987,Rented,486.4,4,351
+385,2473035,Impala,Chevrolet,2003,Available,420.35,2,54
+386,7801005,Sienna,Toyota,2002,In Maintenance,251.95,5,207
+387,8201531,S-Type,Jaguar,2008,Rented,232.61,2,299
+388,2654899,Grand Voyager,Chrysler,2000,Available,329.97,2,132
+389,7578102,200,Chrysler,2012,Available,193.77,9,304
+390,9508174,Tundra,Toyota,2011,Available,104.35,7,322
+391,6513161,Freestyle,Ford,2007,Available,336.11,9,366
+392,5998942,Explorer,Ford,1994,In Maintenance,104.86,9,1
+393,4746795,G8,Pontiac,2009,Rented,345.59,5,236
+394,4928875,S-Class,Mercedes-Benz,2011,Rented,348.71,5,187
+395,2023574,Grand Cherokee,Jeep,1995,Available,459.37,5,28
+396,6608261,Elise,Lotus,2004,In Maintenance,336.33,2,17
+397,3984198,Viper,Dodge,2009,Available,369.69,5,165
+398,5991568,TL,Acura,2006,Rented,389.89,4,330
+399,2561177,EX,Infiniti,2010,In Maintenance,266.39,9,300
+400,5533708,XJ Series,Jaguar,2001,Available,103.64,5,334
+401,4558358,Ram Van 2500,Dodge,2003,Rented,486.0,12,373
+402,1237389,Pilot,Honda,2004,In Maintenance,474.57,2,247
+403,5485967,J,Infiniti,1994,In Maintenance,171.45,5,11
