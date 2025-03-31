@@ -247,33 +247,33 @@ Provide the following SQL scripts:
 • Branch ID: 4–403
 📜**[View `branches1.csv`](שלב%20א/DataImportFiles/branches1.csv)**
 
-![image1](image.png)
+![image1](שלב%20א/DataImportFiles/image.png)
 
-![image2](image-1.png)
+![image2](שלב%20א/DataImportFiles/image-1.png)
 
 results for  the command `SELECT 'Branch' AS TableName, COUNT(*) FROM Branch;`:
-![image3](image-2.png) 
+![image3](שלב%20א/DataImportFiles/image-2.png) 
 
 ##### Payments Table Data Entry:
 • Payment ID: 4–23
 📜**[View `payments2.csv`](שלב%20א/DataImportFiles/payments2.csv)**
 
-![image4](image-3.png)
+![image4](שלב%20א/DataImportFiles/image-3.png)
 
-![image5](image-4.png)
+![image5](שלב%20א/DataImportFiles/image-4.png)
 #### Second tool: using [generatedata](https://generatedata.com/generator). to create csv file
 ##### Payments Table Data Entry:
 • Payment ID: 24-396
 📜**[View `PaymentsInsert1.csv`](שלב%20א/generatedataFiles/PaymentsInsert1.csv)**
 
-![image6](image-5.png)
+![image6](שלב%20א/generatedataFiles/image-5.png)
 
-![image7](image-6.png)
+![image7](שלב%20א/generatedataFiles/image-6.png)
 
-![image8](image-7.png)
+![image8](שלב%20א/generatedataFiles/image-7.png)
 
 results for  the command `SELECT 'Payment' AS TableName, COUNT(*) FROM Payment;`:
-![image9](image-8.png)
+![image9](שלב%20א/generatedataFiles/image-8.png)
 
 ####  Third tool: using [mockaro](https://www.mockaroo.com/) to create csv file
 ##### Car Table Data Entry:
@@ -281,14 +281,14 @@ results for  the command `SELECT 'Payment' AS TableName, COUNT(*) FROM Payment;`
 -  Formula of Car ID: `this + 4`
 📜 **[View `mock_car.csv`](שלב%20א/mockarooFiles/mock_car.csv)**
 
-![image10](image-9.png)
+![image10](שלב%20א/mockarooFiles/image-9.png)
 
-![image11](image-10.png)
+![image11](שלב%20א/mockarooFiles/image-10.png)
 
-![alt text](תמונה%20של%20WhatsApp‏%202025-03-29%20בשעה%2023.01.14_eb709eab.jpg)
+![alt text](שלב%20א/mockarooFiles/תמונה%20של%20WhatsApp‏%202025-03-29%20בשעה%2023.01.14_eb709eab.jpg)
 
 results for  the command `SELECT 'Car' AS TableName, COUNT(*) FROM Car;`:
-![image12](image-11.png)
+![image12](שלב%20א/mockarooFiles/image-11.png)
 
 ####  Fourth Tool: Using Python to generate a CSV file and insert it into the database
 ##### Customers Table Data Entry:
@@ -297,10 +297,10 @@ results for  the command `SELECT 'Car' AS TableName, COUNT(*) FROM Car;`:
 
 **[View `CustomersInsert.py`](שלב%20א/Programing1/CustomerInsert.py)**
 
-![image13](image-12.png)
+![image13](שלב%20א/Programing1/image-12.png)
 
 results for  the command `SELECT 'Customer' AS TableName, COUNT(*) FROM Customer;`:
-![image14](image-13.png)
+![image14](שלב%20א/Programing1/image-13.png)
 
 ##### Rental Table Data Entry:
 • Rental ID: 4–403
@@ -308,12 +308,12 @@ results for  the command `SELECT 'Customer' AS TableName, COUNT(*) FROM Customer
 
 **[View `RentalInsert.py`](שלב%20א/Programing1/RentalInsert.py)**
 
-![alt1 text](תמונה%20של%20WhatsApp‏%202025-03-29%20בשעה%2023.58.27_06a936d2.jpg)
+![alt1 text](שלב%20א/Programing1/תמונה%20של%20WhatsApp‏%202025-03-29%20בשעה%2023.58.27_06a936d2.jpg)
 
-![image15](image-14.png)
+![image15](שלב%20א/Programing1/image-14.png)
 
 results for  the command `SELECT 'Rental' AS TableName, COUNT(*) FROM Rental;`:
-![image16](image-15.png)
+![image16](שלב%20א/Programing1/image-15.png)
 
 ##### Maintenance Table Data Entry:
 • Maintenance ID: 4–403
@@ -321,24 +321,24 @@ results for  the command `SELECT 'Rental' AS TableName, COUNT(*) FROM Rental;`:
 
 **[View `MaintenanceInsert.py`](שלב%20א/Programing1/MaintenancesInsert.py)**
 
-![alt3 text](תמונה%20של%20WhatsApp‏%202025-03-29%20בשעה%2023.59.18_245283a0.jpg)
+![alt3 text](שלב%20א/Programing1/תמונה%20של%20WhatsApp‏%202025-03-29%20בשעה%2023.59.18_245283a0.jpg)
 
-![image17](image-16.png)
+![image17](שלב%20א/Programing1/image-16.png)
 
 results for  the command `SELECT 'Maintenance' AS TableName, COUNT(*) FROM Maintenance;`:
-![image18](image-17.png)
+![image18](שלב%20א/Programing1/image-17.png)
 ### Backup 
 -   backups files are kept with the date and hour of the backup:  
 
-[Navigate to the backups folder](שלב%20א/Backup2.backup)
+[Navigate to the backups folder](שלב%20א/BackupFiles/Backup2.backup)
 
-[Also backups folder](שלב%20א/Backup.sql)
+[Also backups folder](שלב%20א/BackupFiles/Backup.sql)
 
-![image19](image-18.png)
+![image19](שלב%20א/BackupFiles/image-18.png)
 
 ### Data Restoration
 
-![image20](image-19.png)
+![image20](שלב%20א/BackupFiles/image-19.png)
 
 
 ## Phase 2: Integration 
