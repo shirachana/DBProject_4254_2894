@@ -71,7 +71,7 @@ try:
         payment_id = random.choice(payment_ids)
 
         price_per_day = car_price_map.get(car_id, 0)
-        total_cost = round(num_days * price_per_day, 2)
+        total_cost = round(num_days * price_per_day)  # ← עיגול למספר שלם
 
         rentals.append([
             rental_id, start_date.strftime('%Y-%m-%d'),
