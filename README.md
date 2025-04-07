@@ -36,7 +36,7 @@
        -[Maintenance Table Data Entry](#maintenance-table-data-entry)
   - [Backup](#backup)
   - [Data Restoration](#data-restoration)  
-- [Phase 2: Integration](#phase-2-integration)  
+- [Phase 2: Queries and constraints](#phase-2-queries-and-constraints) 
 
 ## Phase 1: Design and Build the Database  
 
@@ -341,4 +341,77 @@ results for  the command `SELECT 'Maintenance' AS TableName, COUNT(*) FROM Maint
 ![image20](שלב%20א/BackupFiles/image-19.png)
 
 
-## Phase 2: Integration 
+## Phase 2: Queries and constraints
+
+![Select1](שלב%20ב/PicturesSELECT/Select1.png)
+![Select2](שלב%20ב/PicturesSELECT/Select2.png)
+![Select3](שלב%20ב/PicturesSELECT/Select3.png)
+![Select4](שלב%20ב/PicturesSELECT/Select4.png)
+![Select5](שלב%20ב/PicturesSELECT/Select5.png)
+![Select6](שלב%20ב/PicturesSELECT/Select6.png)
+![Select7](שלב%20ב/PicturesSELECT/Select7.png)
+![Select8](שלב%20ב/PicturesSELECT/Select8.png)
+![Select9](שלב%20ב/PicturesSELECT/Select9.png)
+![Select10](שלב%20ב/PicturesSELECT/Select10.png)
+![Select11](שלב%20ב/PicturesSELECT/Select11.png)
+![Select12](שלב%20ב/PicturesSELECT/Select12.png)
+![Select13](שלב%20ב/PicturesSELECT/Select13.png)
+
+![Delete1_before](שלב%20ב/PicturesDELETE/Delete1_before.png)
+![Delete1](שלב%20ב/PicturesDELETE/Delete1.png)
+![Delete1_after](שלב%20ב/PicturesDELETE/Delete1_after.png)
+
+![Delete23_before](שלב%20ב/PicturesDELETE/Delete23_before.png)
+![Delete2](שלב%20ב/PicturesDELETE/Delete2.png)
+![Delete2_after](שלב%20ב/PicturesDELETE/Delete2_after.png)
+
+![Delete23_before](שלב%20ב/PicturesDELETE/Delete23_before.png)
+![Delete3](שלב%20ב/PicturesDELETE/Delete3.png)
+![Delete3_after](שלב%20ב/PicturesDELETE/Delete3_after.png)
+
+![Delete4_before](שלב%20ב/PicturesDELETE/Delete4_before.png)
+![Delete4](שלב%20ב/PicturesDELETE/Delete4.png)
+![Delete4_after](שלב%20ב/PicturesDELETE/Delete4_after.png)
+
+
+![Update123_before](שלב%20ב/PicturesUPDATE/Update123_before.png)
+![Update1](שלב%20ב/PicturesUPDATE/Update1.png)
+![Update1_after](שלב%20ב/PicturesUPDATE/Update1_after.png)
+
+![Update123_before](שלב%20ב/PicturesUPDATE/Update123_before.png)
+![Update2](שלב%20ב/PicturesUPDATE/Update2.png)
+![Update2_after](שלב%20ב/PicturesUPDATE/Update2_after.png)
+
+![Update123_before](שלב%20ב/PicturesUPDATE/Update123_before.png)
+![Update3](שלב%20ב/PicturesUPDATE/Update3.png)
+![Update3_after](שלב%20ב/PicturesUPDATE/Update3_after.png)
+
+![Update4_before](שלב%20ב/PicturesUPDATE/Update4_before.png)
+![Update4](שלב%20ב/PicturesUPDATE/Update4.png)
+![Update4_after](שלב%20ב/PicturesUPDATE/Update4_after.png)
+
+![Update5_before](שלב%20ב/PicturesUPDATE/Update5_before.png)
+![Update5](שלב%20ב/PicturesUPDATE/Update5.png)
+![Update5_after](שלב%20ב/PicturesUPDATE/Update5_after.png)
+
+![Update6_before](שלב%20ב/PicturesUPDATE/Update6_before.png)
+![Update6](שלב%20ב/PicturesUPDATE/Update6.png)
+![Update6_after](שלב%20ב/PicturesUPDATE/Update6_after.png)
+
+![Cont1A](שלב%20ב/PicturesConstraints/Cont1A.png)
+![Cont1B](שלב%20ב/PicturesConstraints/Cont1B.png)
+
+![Cont2A](שלב%20ב/PicturesConstraints/Cont2A.png)
+![Cont2B](שלב%20ב/PicturesConstraints/Cont2B.png)
+
+![Cont3A](שלב%20ב/PicturesConstraints/Cont3A.png)
+![Cont3B](שלב%20ב/PicturesConstraints/Cont3B.png)
+![Cont3C](שלב%20ב/PicturesConstraints/Cont3C.png)
+
+![Cont4A](שלב%20ב/PicturesConstraints/Cont4A.png)
+![Cont4B](שלב%20ב/PicturesConstraints/Cont4B.png)
+
+![Cont5A](שלב%20ב/PicturesConstraints/Cont5A.png)
+![Cont5B](שלב%20ב/PicturesConstraints/Cont5B.png)
+
+
