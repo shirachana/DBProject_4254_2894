@@ -21,16 +21,6 @@ HAVING COUNT(*) > (
 )
 ORDER BY Year, Month;
 
--- 3. רכבים שהושכרו בסכום גבוה יותר מהממוצע של אותו רכב
---SELECT RentalID, TotalCost, CarID
---FROM Rental r1
---WHERE TotalCost > (
---    SELECT AVG(r2.TotalCost)
---    FROM Rental r2
---    WHERE r2.CarID = r1.CarID
---)
---ORDER BY CarID;
-
 -- 3 ממוצע מספר מושבים לרכבים שהושכרו
 SELECT AVG(car.NumSeats) AS AvgSeats
 FROM Rental r
