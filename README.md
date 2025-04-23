@@ -904,7 +904,7 @@ BEGIN;
 
 -- דוגמה ל-ROLLBACK על טבלת Customer
 UPDATE Customer
-SET Phone = '0500000000'
+SET Phone = '0500000023'
 WHERE CustomerID = 1;
 
 -- בדיקת נתונים לאחר העדכון
