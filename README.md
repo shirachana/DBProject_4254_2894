@@ -42,6 +42,9 @@
     - [DELETE](#delete)
     - [UPDATE](#update)
   - [Constraints](#constraints)
+  - [Rollback and Commit](#rollback-and-commit)
+    - [Rollback](#rollback)
+    - [Commit](#commit)
   - [Backup2](#backup2)  
 
 ## Phase 1: Design and Build the Database  
@@ -889,6 +892,71 @@ CHECK (
 
 ###### SQL lines that attempted to violate the constraint
 ![Cont5B](שלב%20ב/PicturesConstraints/Cont5B.png)
+
+### Rollback and Commit
+
+#### The rollback and commit sql: **[View `RollbackCommit.sql`](שלב%20ב/RollbackCommit.sql)**  
+
+##### RollBack:
+
+-- התחלת טרנזקציה
+BEGIN;
+
+-- דוגמה ל-ROLLBACK על טבלת Customer
+UPDATE Customer
+SET Phone = '0500000000'
+WHERE CustomerID = 1;
+
+-- בדיקת נתונים לאחר העדכון
+SELECT * FROM Customer WHERE CustomerID = 1;
+
+-- ביטול העדכון
+ROLLBACK;
+
+-- בדיקה שהשינוי בוטל
+SELECT * FROM Customer WHERE CustomerID = 1;
+
+שימוש ב־ROLLBACK בטבלת לקוחות: ביצענו עדכון למספר הטלפון של לקוח עם מזהה 1. לאחר בדיקת המידע, ביצענו פקודת ROLLBACK ובכך ביטלנו את השינוי. ניתן לראות בצילום שהתוצאה חזרה לערך המקורי.
+
+Before:
+![RollBack1](שלב%20ב/PictureRollAndCommit/תמונה%20של%20WhatsApp‏%202025-04-23%20בשעה%2017.20.18_3926741d.jpg)
+
+Rollback:
+![RollBack2](שלב%20ב/PictureRollAndCommit/תמונה%20של%20WhatsApp‏%202025-04-23%20בשעה%2017.17.34_13c165d6.jpg)
+
+After:
+![RollBack3](שלב%20ב/PictureRollAndCommit/תמונה%20של%20WhatsApp‏%202025-04-23%20בשעה%2017.21.32_b15a4b58.jpg)
+
+##### Commit:
+
+-- התחלת טרנזקציה חדשה
+BEGIN;
+
+-- דוגמה ל-COMMIT על טבלת Branch
+UPDATE Branch
+SET Phone = '03-1111111'
+WHERE BranchID = 2;
+
+-- בדיקת נתונים לאחר העדכון
+SELECT * FROM Branch WHERE BranchID = 2;
+
+-- שמירת העדכון
+COMMIT;
+
+-- בדיקה שהשינוי נשמר
+SELECT * FROM Branch WHERE BranchID = 2;
+
+
+שימוש ב־COMMIT בטבלת סניפים: עדכנו את מספר הטלפון של סניף 2, ביצענו בדיקה ואישרנו את השינוי עם COMMIT. בבדיקה לאחר מכן, השינוי נשמר.
+
+Before:
+![Commit1](שלב%20ב/PictureRollAndCommit/תמונה%20של%20WhatsApp‏%202025-04-23%20בשעה%2017.23.27_87c1eb9c.jpg)
+
+Commit:
+![Commit2](שלב%20ב/PictureRollAndCommit/תמונה%20של%20WhatsApp‏%202025-04-23%20בשעה%2017.24.03_5e672236.jpg)
+
+After:
+![Commit3](שלב%20ב/PictureRollAndCommit/תמונה%20של%20WhatsApp‏%202025-04-23%20בשעה%2017.24.34_37cfa777.jpg)
 
 ### Backup2 
 -   backups files are kept with the date and hour of the backup:  
