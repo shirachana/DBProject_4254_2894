@@ -46,6 +46,11 @@
     - [Rollback](#rollback)
     - [Commit](#commit)
   - [Backup2](#backup2)  
+- [Phase 3: Integration and Views](#phase-3-integration-and-views)
+  -[DSD of the new organization](#dsd-of-the-new-organization)
+  -[ERD of the new organization](#erd-of-the-new-organization)
+  -[Unified ERD after integration](#unified-erd-after-integration)
+  -[Unified DSD after integration](#unified-dsd-after-integration)
 
 ## Phase 1: Design and Build the Database  
 
@@ -962,3 +967,204 @@ After:
 -   backups files are kept with the date and hour of the backup:  
 
 [Navigate to the backups folder](שלב%20ב/BackupStage2.backup)
+
+## Phase 3: Integration and Views:
+
+### DSD of the new organization:
+![DSD1](<שלב ג/DSD_NEW_Org.jpg>)
+
+### ERD of the new organization:
+![ERD1](<שלב ג/ERD_New_Org.jpg>)
+
+### Unified ERD after integration:
+![ERD2](<שלב ג/ERD_New.png>)
+
+### Unified DSD after integration:
+![DSD2](<שלב ג/DSD_New.png>)
+
+ ### Decisions made during the integration phase:
+ [Integration.sql](שלב%20ג/Integrate.sql)
+
+We kept a customer table from our system, and integrated the use of customers from trips into it.
+
+We related the rental table (Rentals) to the trip table (Trips), so that a trip can have a car rental.
+
+Not every trip has to include a car rental – the relationship between Rental and Trip is not mandatory.
+
+We used postgres_fdw to import tables from our partners’ database.
+
+We standardized the key types (INT), and fixed overlapping column names.
+
+🛠️ Technical process:
+
+Activating the FDW extension in PostgreSQL
+
+Creating a foreign server and connecting with user mapping
+
+Importing relevant tables as FOREIGN TABLES
+
+Updating existing tables with ALTER TABLE commands to add columns and foreign keys
+
+Creating views (Views) – one for each department
+
+ ### Verbal explanation of the process and commands:
+CREATE EXTENSION IF NOT EXISTS postgres_fdw;
+
+This command enables the postgres_fdw extension in your database.
+It allows you to connect to and interact with tables from another PostgreSQL database as if they were local tables.
+
+CREATE SERVER triporg_server
+FOREIGN DATA WRAPPER postgres_fdw
+OPTIONS (host 'localhost', dbname 'TRIPORG', port '5432');
+
+This defines a remote PostgreSQL server named triporg_server.
+
+It is hosted on the same machine (localhost)
+
+It connects to a database called TRIPORG on port 5432.
+
+CREATE USER MAPPING FOR shira
+SERVER tripOrgDB_server
+OPTIONS (user 'shira', password 'shira2025');
+
+This command sets up credentials so that the current local user (shira) can access the remote server tripOrgDB_server.
+
+Each of the following CREATE FOREIGN TABLE commands imports the structure of a table from the TRIPORG database into your local database.
+
+These tables do not copy the data physically – instead, they reference the data directly from the source.
+
+CREATE FOREIGN TABLE trip_remote (
+
+  tripid INT,
+  startdate DATE,
+  enddate DATE,
+  destinationzip INT,
+  hotelid INT,
+  guideid INT,
+  flightid INT
+) SERVER tripOrgDB_server
+OPTIONS (schema_name 'public', table_name 'trip');
+
+CREATE FOREIGN TABLE guide_remote (
+  guideid INT,
+  guidename VARCHAR(100),
+  phonenumber VARCHAR(20)
+) SERVER tripOrgDB_server
+OPTIONS (schema_name 'public', table_name 'guide');
+
+CREATE FOREIGN TABLE hotel_remote (
+  hotelid INT,
+  hotelname VARCHAR(100),
+  location VARCHAR(255),
+  totalrooms INT
+) SERVER tripOrgDB_server
+OPTIONS (schema_name 'public', table_name 'hotel');
+
+CREATE FOREIGN TABLE flight_remote (
+  flightid INT,
+  airline VARCHAR(100),
+  depaturedate DATE,
+  returndate DATE
+) SERVER tripOrgDB_server
+OPTIONS (schema_name 'public', table_name 'flight');
+
+CREATE FOREIGN TABLE destination_remote (
+  zipcode INT,
+  country VARCHAR(100),
+  address VARCHAR(255)
+) SERVER tripOrgDB_server
+OPTIONS (schema_name 'public', table_name 'destination');
+
+CREATE FOREIGN TABLE invite_remote (
+  tripid INT,
+  customerid INT,
+  totalcustomer INT
+) SERVER tripOrgDB_server
+OPTIONS (schema_name 'public', table_name 'invite');
+
+
+
+
+### The Views and the Queries:
+[the Viwes.sql](שלב%20ג/Views.sql)
+
+-- View 1 – סיכום השכרות רכב עם פרטי הלקוח והסניף:
+CREATE VIEW rental_summary AS
+SELECT
+  r.rentalid,
+  r.startdate,
+  r.enddate,
+  c.model AS car_model,
+  c.manufacturer,
+  cu.firstname || ' ' || cu.lastname AS customer_name,
+  b.branchname
+FROM rental r
+JOIN car c ON r.carid = c.carid
+JOIN customer cu ON r.customerid = cu.customerid
+JOIN branch b ON c.branchid = b.branchid;
+
+![pic1](<שלב ג/תמונה של WhatsApp‏ 2025-05-11 בשעה 15.43.13_cf00d2d2.jpg>)
+
+This view displays combined information about each rental made, including the rental dates, vehicle model, manufacturer, customer name (composed of first and last name), and the branch name from which the vehicle was rented.
+
+The data is pulled from the rental, car, customer, and branch tables.
+
+--📌 שאילתה 1 – כל ההשכרות שבוצעו אחרי ינואר 2025
+SELECT * FROM rental_summary
+WHERE startdate >= '2025-01-01';
+
+![pic2](<שלב ג/תמונה של WhatsApp‏ 2025-05-11 בשעה 15.43.53_0e41cbb3.jpg>)
+
+Retrieves all rentals made from January 1, 2025 onwards.
+
+--📌 שאילתה 2 – כמה רכבים כל לקוח שכר
+SELECT customer_name, COUNT(*) AS num_rentals
+FROM rental_summary
+GROUP BY customer_name
+ORDER BY num_rentals DESC;
+
+![pic3](<שלב ג/תמונה של WhatsApp‏ 2025-05-11 בשעה 15.44.24_c0b86d7e.jpg>)
+
+Retrieves how many rentals each customer has made by their full name, from the most to the fewest rentals.
+
+-- View 2 – סיכום טיולים כולל יעד, מדריך ובית מלון (מהאגף השני)
+CREATE VIEW trip_overview AS
+SELECT
+  t.tripid,
+  t.startdate,
+  t.enddate,
+  d.country,
+  h.hotelname,
+  g.guidename
+FROM trip_remote t
+JOIN destination_remote d ON t.zipcode = d.zipcode
+JOIN hotel_remote h ON t.hotelid = h.hotelid
+JOIN guide_remote g ON t.guideid = g.guideid;
+
+![pic4](<שלב ג/תמונה של WhatsApp‏ 2025-05-11 בשעה 15.49.01_3dc7932f.jpg>)
+
+This view displays a view of trips from the second side (trips), including trip ID, start and end dates, country to which the trip is taking place, hotel name, and guide name.
+
+The data is pulled from the remote tables: trip_remote, destination_remote, hotel_remote, guide_remote.
+
+-- 📌 שאילתה 1 – טיולים באירופה בלבד
+SELECT * FROM trip_overview
+WHERE country IN ('France', 'Germany', 'Italy', 'Spain');
+
+![pic5](<שלב ג/תמונה של WhatsApp‏ 2025-05-11 בשעה 15.49.43_e2c74977.jpg>)
+
+Only shows trips that take place in European countries (as defined in the list) from the view.
+
+-- 📌 שאילתה 2 – מספר טיולים לכל מדריך
+SELECT guidename, COUNT(*) AS number_of_trips
+FROM trip_overview
+GROUP BY guidename
+ORDER BY number_of_trips DESC;
+
+![pic6](<שלב ג/תמונה של WhatsApp‏ 2025-05-11 בשעה 15.50.13_399cf8f3.jpg>)
+
+Calculates the number of trips each guide has led, and displays from most to least.
+
+### Backup3:
+-   backups files are kept with the date and hour of the backup: 
+[Navigate to the backups folder](שלב%20ג/Backup3.backup)
