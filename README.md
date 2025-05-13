@@ -47,10 +47,22 @@
     - [Commit](#commit)
   - [Backup2](#backup2)  
 - [Phase 3: Integration and Views](#phase-3-integration-and-views)
+
   -[DSD of the new organization](#dsd-of-the-new-organization)
+
   -[ERD of the new organization](#erd-of-the-new-organization)
+
   -[Unified ERD after integration](#unified-erd-after-integration)
+
   -[Unified DSD after integration](#unified-dsd-after-integration)
+
+  -[Decisions made during the integration phase](#decisions-made-during-the-integration-phase)
+
+  -[Verbal explanation of the process and commands](#verbal-explanation-of-the-process-and-commands)
+
+  -[The Views and the Queries](#the-views-and-the-queries)
+  
+  -[Backup3](#backup3)
 
 ## Phase 1: Design and Build the Database  
 
@@ -985,27 +997,96 @@ After:
  ### Decisions made during the integration phase:
  [Integration.sql](שלב%20ג/Integrate.sql)
 
-We kept a customer table from our system, and integrated the use of customers from trips into it.
+As part of the integration process between our database (RentalCarDB) and our partner team's database (TripOrgDB),
 
-We related the rental table (Rentals) to the trip table (Trips), so that a trip can have a car rental.
+ we reviewed the backup of the TripOrg system and followed a reverse-engineering process to reconstruct their DSD and ERD based on the schema 
+ 
+ observed in pgAdmin.
 
-Not every trip has to include a car rental – the relationship between Rental and Trip is not mandatory.
+Upon analyzing both systems, we identified overlapping entities – primarily the Customer table. 
 
-We used postgres_fdw to import tables from our partners’ database.
+After comparing both versions, we decided to retain our version of the Customer table because it includes richer and more structured data (e.g., 
 
-We standardized the key types (INT), and fixed overlapping column names.
+separate FirstName and LastName, DateOfBirth, LicenseNumber, and validation constraints).
 
-🛠️ Technical process:
+We designed a shared ERD that merges both schemas and supports interoperability between the car rental and trip management systems.
 
-Activating the FDW extension in PostgreSQL
+After we received the backup file of the new group, we checked it and went into PGADMIN and searched for the ERD and from there we took all the 
 
-Creating a foreign server and connecting with user mapping
+fields and types and created a DSD and then inferred the relationships according to the ERD we received from the PG  Key integration decisions 
 
-Importing relevant tables as FOREIGN TABLES
+included:
 
-Updating existing tables with ALTER TABLE commands to add columns and foreign keys
+Unifying the Customer entity: The Customer table from our system serves both systems. The foreign tables imported from TripOrg were adapted 
 
-Creating views (Views) – one for each department
+accordingly by mapping their customer IDs to our schema.
+
+Linking Rental and Trip: We added a foreign key from Rental to Trip, allowing each rental to optionally be associated with a trip. This reflects 
+
+realistic travel scenarios where a trip may involve car rental, but not necessarily.
+
+Adding FlightID to Trip: We extended the Trip table to include a foreign key to the Flight table, establishing that every trip may include a 
+
+flight segment. This connection was logical given the structure of the partner’s system and enhances trip tracking.
+
+Preserving existing relationships: We ensured all original relationships and constraints from both systems remained intact, except where 
+
+integration required modifications.
+
+⚙️ Technical Implementation Steps
+The following actions were executed within the RentalCarDB database environment to achieve full integration:
+
+Enable the postgres_fdw extension
+
+CREATE EXTENSION IF NOT EXISTS postgres_fdw;
+Create a foreign server for TripOrgDB
+
+CREATE SERVER triporg_server
+FOREIGN DATA WRAPPER postgres_fdw
+OPTIONS (host 'localhost', dbname 'TripOrgDB', port '5432');
+Create user mapping for the current PostgreSQL user
+
+CREATE USER MAPPING FOR CURRENT_USER
+SERVER triporg_server
+OPTIONS (user 'shira', password 'shira2025');
+Import necessary TripOrg tables as FOREIGN TABLES
+Example (for trip table):
+
+CREATE FOREIGN TABLE trip_remote (
+  tripid INT,
+  startdate DATE,
+  enddate DATE,
+  destinationzip INT,
+  hotelid INT,
+  guideid INT,
+  flightid INT
+) SERVER triporg_server
+OPTIONS (schema_name 'public', table_name 'trip');
+The same process was repeated for: guide, hotel, flight, destination, invite.
+
+Add foreign keys and new attributes to existing tables
+
+Add TripID to the Rental table:
+
+ALTER TABLE Rental ADD COLUMN TripID INT;
+ALTER TABLE Rental
+ADD CONSTRAINT fk_rental_trip FOREIGN KEY (TripID)
+REFERENCES trip_remote(tripid);
+Add FlightID to the Trip table (if modifying local copy, otherwise just refer to foreign table).
+
+Standardize column names and types
+
+Converted all foreign table IDs to INT
+
+Unified naming conventions (e.g., GuideID, HotelID) where possible
+
+Dropped redundant attributes or columns already managed in local tables
+
+Create views for each system (see Views.sql)
+
+rental_summary: summarizing rental info with customer and branch
+
+trip_overview: summarizing trips with destination, hotel, guide
 
  ### Verbal explanation of the process and commands:
 CREATE EXTENSION IF NOT EXISTS postgres_fdw;
@@ -1083,8 +1164,6 @@ CREATE FOREIGN TABLE invite_remote (
 OPTIONS (schema_name 'public', table_name 'invite');
 
 
-
-
 ### The Views and the Queries:
 [the Viwes.sql](שלב%20ג/Views.sql)
 
@@ -1104,6 +1183,11 @@ JOIN customer cu ON r.customerid = cu.customerid
 JOIN branch b ON c.branchid = b.branchid;
 
 ![pic1](<שלב ג/תמונה של WhatsApp‏ 2025-05-11 בשעה 15.43.13_cf00d2d2.jpg>)
+
+SELECT * FROM rental_summary;
+
+![10DATA!](שלב%20ג/image.png)
+
 
 This view displays combined information about each rental made, including the rental dates, vehicle model, manufacturer, customer name (composed of first and last name), and the branch name from which the vehicle was rented.
 
@@ -1142,6 +1226,10 @@ JOIN hotel_remote h ON t.hotelid = h.hotelid
 JOIN guide_remote g ON t.guideid = g.guideid;
 
 ![pic4](<שלב ג/תמונה של WhatsApp‏ 2025-05-11 בשעה 15.49.01_3dc7932f.jpg>)
+
+SELECT * FROM trip_overview;
+
+![10DATA2](שלב%20ג/image2.png)
 
 This view displays a view of trips from the second side (trips), including trip ID, start and end dates, country to which the trip is taking place, hotel name, and guide name.
 
