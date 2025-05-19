@@ -67,9 +67,17 @@ CREATE FOREIGN TABLE customer_remote (
 ) SERVER tripOrgDB_server
 OPTIONS (schema_name 'public', table_name 'customer');
 
-INSERT INTO Customer (CustomerID, FirstName, LastName, Phone, Email, LicenseNumber, DateOfBirth)
+INSERT INTO Customer (
+  CustomerID, 
+  FirstName, 
+  LastName, 
+  Phone, 
+  Email, 
+  LicenseNumber, 
+  DateOfBirth
+)
 SELECT
-  id,
+  id + 403,  -- הזזת ה-ID
   split_part(fullname, ' ', 1),
   split_part(fullname, ' ', 2),
   phonenumber,
@@ -78,4 +86,5 @@ SELECT
   (CURRENT_DATE - (18 + floor(random() * 40)) * INTERVAL '1 year')::DATE
 FROM customer_remote
 ON CONFLICT (CustomerID) DO NOTHING;
+
 
