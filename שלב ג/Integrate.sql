@@ -58,3 +58,24 @@ CREATE FOREIGN TABLE invite_remote (
   totalcustomer INT
 ) SERVER tripOrgDB_server
 OPTIONS (schema_name 'public', table_name 'invite');
+
+CREATE FOREIGN TABLE customer_remote (
+  id INT,
+  fullname VARCHAR(100),
+  phonenumber VARCHAR(20),
+  email VARCHAR(100)
+) SERVER tripOrgDB_server
+OPTIONS (schema_name 'public', table_name 'customer');
+
+INSERT INTO Customer (CustomerID, FirstName, LastName, Phone, Email, LicenseNumber, DateOfBirth)
+SELECT
+  id,
+  split_part(fullname, ' ', 1),
+  split_part(fullname, ' ', 2),
+  phonenumber,
+  email,
+  floor(random() * 900000000 + 100000000)::INT,
+  (CURRENT_DATE - (18 + floor(random() * 40)) * INTERVAL '1 year')::DATE
+FROM customer_remote
+ON CONFLICT (CustomerID) DO NOTHING;
+
