@@ -17,23 +17,16 @@
   - [SQL Scripts](#sql-scripts)  
   - [Data](#data)
     - [First tool](#first-tool-using-csv-file)
-
-       -[Branch Table Data Entry](#branch-table-data-entry)
-
-       -[Payments Table Data Entry](#payments-table-data-entry)
+       - [Branch Table Data Entry](#branch-table-data-entry)
+       - [Payments Table Data Entry](#payments-table-data-entry)
     - [Second tool](#second-tool-using-generatedata-to-create-csv-file)
-
-       -[Payments Table Data Entry](#payments-table-data-entry-1)
+       - [Payments Table Data Entry](#payments-table-data-entry-1)
     - [Third tool](#third-tool-using-mockaro-to-create-csv-file)
-
-       -[Car Table Data Entry](#car-table-data-entry)
+       - [Car Table Data Entry](#car-table-data-entry)
     - [Fourth tool](#fourth-tool-using-python-to-generate-a-csv-file-and-insert-it-into-the-database)
-
-       -[Customers Table Data Entry](#customers-table-data-entry)
-
-       -[Rental Table Data Entry](#rental-table-data-entry)
-       
-       -[Maintenance Table Data Entry](#maintenance-table-data-entry)
+       - [Customers Table Data Entry](#customers-table-data-entry)
+       - [Rental Table Data Entry](#rental-table-data-entry)
+       - [Maintenance Table Data Entry](#maintenance-table-data-entry)
   - [Backup](#backup)
   - [Data Restoration](#data-restoration)  
 - [Phase 2: Queries and Constraints](#phase-2-queries-and-constraints) 
@@ -47,22 +40,21 @@
     - [Commit](#commit)
   - [Backup2](#backup2)  
 - [Phase 3: Integration and Views](#phase-3-integration-and-views)
-
-  -[DSD of the new organization](#dsd-of-the-new-organization)
-
-  -[ERD of the new organization](#erd-of-the-new-organization)
-
-  -[Unified ERD after integration](#unified-erd-after-integration)
-
-  -[Unified DSD after integration](#unified-dsd-after-integration)
-
-  -[Decisions made during the integration phase](#decisions-made-during-the-integration-phase)
-
-  -[Verbal explanation of the process and commands](#verbal-explanation-of-the-process-and-commands)
-
-  -[The Views and the Queries](#the-views-and-the-queries)
-  
-  -[Backup3](#backup3)
+  - [DSD of the new organization](#dsd-of-the-new-organization)
+  - [ERD of the new organization](#erd-of-the-new-organization)
+  - [Unified ERD after integration](#unified-erd-after-integration)
+  - [Unified DSD after integration](#unified-dsd-after-integration)
+  - [Decisions made during the integration phase](#decisions-made-during-the-integration-phase)
+  - [Verbal explanation of the process and commands](#verbal-explanation-of-the-process-and-commands)
+  - [The Views and the Queries](#the-views-and-the-queries)
+  - [Backup3](#backup3) 
+- [Phase 4: PL/pgSQL programming](#phase-4-plpgsql-programming)
+  - [Functions](#functions)
+  - [Procedures](#procedures)
+  - [Triggers](#triggers)
+  - [Main Programs](#main-programs)
+  - [All Changes](#sql-of-all-the-changes)
+  - [Backup4](#backup4)
 
 ## Phase 1: Design and Build the Database  
 
@@ -1256,3 +1248,265 @@ Calculates the number of trips each guide has led, and displays from most to lea
 ### Backup3:
 -   backups files are kept with the date and hour of the backup: 
 [Navigate to the backups folder](שלב%20ג/Backup3.backup)
+
+## Phase 4: PL/pgSQL programming
+
+### Functions:
+#### פונקציה:1 get_customers_above_age
+
+[Function1 get_customers_above_age](<שלב ד/function_get_customers_above_age.sql>)
+
+##### Description:
+Returns a list of customers over the age sent as a parameter, using REFCURSOR.
+
+CREATE OR REPLACE FUNCTION get_customers_above_age(p_age INT)
+RETURNS refcursor AS $$
+DECLARE
+  cur refcursor := 'cust_cursor';
+BEGIN
+  OPEN cur FOR
+    SELECT CustomerID, FirstName, LastName, DateOfBirth,
+           EXTRACT(YEAR FROM AGE(CURRENT_DATE, DateOfBirth)) AS Age
+    FROM Customer
+    WHERE EXTRACT(YEAR FROM AGE(CURRENT_DATE, DateOfBirth)) > p_age;
+  RETURN cur;
+END;
+
+##### The uses and the correctnes:
+
+![p1](שלב%20ד/Pictures/תמונה%20של%20WhatsApp‏%202025-05-25%20בשעה%2011.12.35_dcd58d14.jpg)
+
+![p2](שלב%20ד/Pictures/תמונה%20של%20WhatsApp‏%202025-05-25%20בשעה%2011.13.32_50f749bd.jpg)
+
+![p3](שלב%20ד/Pictures/תמונה%20של%20WhatsApp‏%202025-05-25%20בשעה%2011.15.04_a4b7d961.jpg)
+
+![p4](שלב%20ד/Pictures/תמונה%20של%20WhatsApp‏%202025-05-25%20בשעה%2011.18.33_b2259fe6.jpg)
+
+#### פונקציה2: update_rental_cost
+
+[Function2 update_rental_cost](שלב%20ד/function_update_rental_cost.sql)
+
+##### Description:
+Updates the TotalCost of the rental according to the difference between dates and the daily price of the vehicle.
+
+CREATE OR REPLACE FUNCTION update_rental_cost(p_rental_id INT)
+RETURNS VOID AS $$
+DECLARE
+  v_days INT;
+  v_price NUMERIC;
+BEGIN
+  SELECT (EndDate - StartDate), c.PricePerDay
+  INTO v_days, v_price
+  FROM Rental r
+  JOIN Car c ON r.CarID = c.CarID
+  WHERE r.RentalID = p_rental_id;
+
+  IF v_days IS NULL THEN
+    RAISE EXCEPTION 'השכרה לא קיימת או בעיית תאריכים.';
+  END IF;
+
+  UPDATE Rental
+  SET TotalCost = GREATEST(v_days, 1) * v_price
+  WHERE RentalID = p_rental_id;
+END;
+
+##### The uses and the correctnes:
+
+![p4](שלב%20ד/Pictures/תמונה%20של%20WhatsApp‏%202025-05-25%20בשעה%2011.20.00_5adc2c22.jpg)
+
+![p5](שלב%20ד/Pictures/תמונה%20של%20WhatsApp‏%202025-05-25%20בשעה%2011.22.26_aeb3a8cf.jpg)
+
+### Procedures
+
+#### Procedure1: add_maintenance
+
+[Procedure1 add_maintenance](שלב%20ד/procedure_add_maintenance.sql)
+
+##### Description:
+Adds a new maintenance treatment to an existing vehicle with an exception check if the vehicle does not exist.
+
+CREATE OR REPLACE PROCEDURE add_maintenance(
+  p_carid INT,
+  p_description VARCHAR,
+  p_cost NUMERIC,
+  p_date DATE
+)
+AS $$
+BEGIN
+  IF NOT EXISTS (SELECT 1 FROM Car WHERE CarID = p_carid) THEN
+    RAISE EXCEPTION 'רכב לא קיים';
+  END IF;
+
+  INSERT INTO Maintenance (MaintenanceID, MaintenanceDate, Description, MCost, CarID)
+  VALUES (DEFAULT, p_date, p_description, p_cost, p_carid);
+END;
+
+##### The uses and the correctnes:
+
+![p6](שלב%20ד/Pictures/תמונה%20של%20WhatsApp‏%202025-05-25%20בשעה%2011.24.15_0fb58741.jpg)
+
+![p7](שלב%20ד/Pictures/תמונה%20של%20WhatsApp‏%202025-05-25%20בשעה%2011.25.59_dc308ae4.jpg)
+
+#### Procedure2: branch_car_summary
+
+[Procedure2 branch_car_summary](שלב%20ד/procedure_branch_car_summary.sql)
+
+##### Description:
+Shows how many vehicles are in each branch. Uses a Cursor and a loop with RAISE NOTICE.
+
+CREATE OR REPLACE PROCEDURE branch_car_summary()
+AS $$
+DECLARE
+  rec RECORD;
+  cur CURSOR FOR
+    SELECT b.BranchName, COUNT(*) AS CarCount
+    FROM Branch b
+    JOIN Car c ON b.BranchID = c.BranchID
+    GROUP BY b.BranchName;
+BEGIN
+  OPEN cur;
+  LOOP
+    FETCH cur INTO rec;
+    EXIT WHEN NOT FOUND;
+    RAISE NOTICE 'סניף: %, מספר רכבים: %', rec.BranchName, rec.CarCount;
+  END LOOP;
+  CLOSE cur;
+END;
+
+##### The uses and the correctnes:
+
+![p8](שלב%20ד/Pictures/תמונה%20של%20WhatsApp‏%202025-05-25%20בשעה%2011.28.09_fee705f1.jpg)
+
+![p9](שלב%20ד/Pictures/תמונה%20של%20WhatsApp‏%202025-05-25%20בשעה%2011.28.38_4dfef4d6.jpg)
+
+### Triggers
+#### Trigger1: log_rental_delete
+
+[Trigger1 log_rental_delete](שלב%20ד/trigger_log_deleted_rentals.sql)
+
+##### Description:
+Stores an ID of each deleted rental in a log table.
+
+CREATE OR REPLACE FUNCTION log_rental_delete()
+RETURNS TRIGGER AS $$
+BEGIN
+  INSERT INTO log_deleted_rentals(RentalID) VALUES (OLD.RentalID);
+  RETURN OLD;
+END;
+
+CREATE TRIGGER trg_log_rental_delete
+AFTER DELETE ON Rental
+FOR EACH ROW
+EXECUTE FUNCTION log_rental_delete();
+
+##### The uses and the correctnes:
+
+![p10](שלב%20ד/Pictures/תמונה%20של%20WhatsApp‏%202025-05-25%20בשעה%2011.29.48_6ba183d8.jpg)
+
+![p11](שלב%20ד/Pictures/תמונה%20של%20WhatsApp‏%202025-05-25%20בשעה%2011.30.12_007bdccd.jpg)
+
+#### Trigger2: trg_set_car_status_rented
+
+[Trigger2 trg_set_car_status_rented](שלב%20ד/trigger_update_car_status.sql)
+
+##### Description:
+When a new rental is added – updates the vehicle status to "Rented".
+
+CREATE OR REPLACE FUNCTION trg_set_car_status_rented()
+RETURNS TRIGGER AS $$
+BEGIN
+  UPDATE Car SET Status = 'Rented' WHERE CarID = NEW.CarID;
+  RETURN NEW;
+END;
+
+CREATE TRIGGER trg_on_rental_insert
+AFTER INSERT ON Rental
+FOR EACH ROW
+EXECUTE FUNCTION trg_set_car_status_rented();
+
+##### The uses and the correctnes:
+
+![p12](שלב%20ד/Pictures/תמונה%20של%20WhatsApp‏%202025-05-25%20בשעה%2011.31.40_b070d19e.jpg)
+
+![p13](שלב%20ד/Pictures/תמונה%20של%20WhatsApp‏%202025-05-25%20בשעה%2011.33.30_f727e1b5.jpg)
+
+### Main Programs
+
+#### Main Program1
+
+[Main Program1](שלב%20ד/main_program1.sql)
+
+##### Description:
+This main program demonstrates a combination of a function call and a procedure:
+
+It calls the function update_rental_cost(101), which updates the TotalCost of rental number 101 according to the number of days and the daily price of the vehicle.
+
+It then calls the procedure add_maintenance, which adds a new maintenance service to vehicle number 5, with a description of "oil check" and a cost of 200 NIS.
+
+📌 Goal of the program: To demonstrate a change in existing business information (rental price), along with the addition of new information (maintenance), while activating two different code entities.
+
+DO $$
+BEGIN
+  PERFORM update_rental_cost(101);
+  CALL add_maintenance(5, 'בדיקת בלמים', 280.00, CURRENT_DATE);
+END;
+
+
+##### The uses and the correctnes:
+
+![p14](שלב%20ד/Pictures/תמונה%20של%20WhatsApp‏%202025-05-25%20בשעה%2011.35.18_be10413b.jpg)
+
+![p15](שלב%20ד/Pictures/תמונה%20של%20WhatsApp‏%202025-05-25%20בשעה%2011.36.36_ca919bc6.jpg)
+
+![p16](שלב%20ד/Pictures/תמונה%20של%20WhatsApp‏%202025-05-25%20בשעה%2011.37.56_0b7c5517.jpg)
+
+
+#### Main Program2
+
+[Main Program2](שלב%20ד/main_program2.sql)
+
+##### Description:
+This program combines work with RefCursor and a loop, along with a call to a second procedure:
+
+First, it calls the function get_customers_above_age(60), which returns a cursor with all customers older than 60.
+
+It loops over the cursor result, and prints (RAISE NOTICE) the customer names.
+
+Then it calls branch_car_summary, which calculates and prints the number of cars in each branch.
+
+📌 The goal of the program: to present advanced interaction with data – both dynamic querying with a cursor, and also using records, a loop, and NOTICE – while combining it with a summary procedure.
+DO $$
+DECLARE
+  ref refcursor;
+  row RECORD;
+BEGIN
+  ref := get_customers_above_age(60);
+  LOOP
+    FETCH ref INTO row;
+    EXIT WHEN NOT FOUND;
+    RAISE NOTICE 'לקוח: % %', row.FirstName, row.LastName;
+  END LOOP;
+
+  CALL branch_car_summary();
+END;
+
+
+##### The uses and the correctnes:
+
+![p16](שלב%20ד/Pictures/תמונה%20של%20WhatsApp‏%202025-05-25%20בשעה%2011.41.19_83c3536b.jpg)
+
+### sql of all the changes:
+
+[the file:](שלב%20ד/All_the_Changes.sql)
+
+### Backup4:
+-   backups files are kept with the date and hour of the backup: 
+[Navigate to the backups folder](שלב%20ד/Backup4.backup)
+
+
+
+
+
+
+
+
