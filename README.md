@@ -55,7 +55,23 @@
   - [Main Programs](#main-programs)
   - [All Changes](#sql-of-all-the-changes)
   - [Backup4](#backup4)
+- [Phase 5: Creating a Graphical Interface](#phase-5-creating-a-graphical-interface)
+  - [Application Run Instructions](#הוראות-הפעלה-של-האפליקציה)
+  - [Tools Used](#-הכלים-בהם-השתמשנו)
+  - [System Structure](#-מבנה-המערכת)
+  - [System Screens](#-מסכים-שהמערכת-כוללת)
+  - [Advanced Functionality Implemented](#-פונקציונליות-מתקדמת-שבוצעה)
+  - [Screenshots](#-תמונות-מסך)
+    - [Login Screen](#מסך-לוגין)
+    - [Main Screen](#מסך-ראשי)
+    - [Clients Screen with Client List](#מסך-לקוחות-כולל-רשימת-לקוחות)
+    - [Vehicles Screen](#מסך-רכבים)
+    - [Rentals Screen](#מסך-השכרות)
+    - [Reports Screen with Tabular Display](#מסך-דוחות-עם-תצוגה-טבלאית)
+      - [Queries with Results](#שאילתות-עם-תוצאות)
+      - [Procedures and Functions with Results](#פרוצדורות-ופונקציות-עם-תוצאות)
 
+      
 ## Phase 1: Design and Build the Database  
 
 ### Introduction
@@ -1502,6 +1518,164 @@ END;
 ### Backup4:
 -   backups files are kept with the date and hour of the backup: 
 [Navigate to the backups folder](שלב%20ד/Backup4.backup)
+
+## Phase 5: Creating a Graphical Interface
+### הוראות הפעלה של האפליקציה
+ודאו כי שרת PostgreSQL פעיל (לדוגמה דרך Docker).
+
+הפעילו את הסקריפט הראשי:
+python .py
+מסך התחברות יופיע – הזינו שם משתמש וסיסמה (ברירת מחדל: admin / 123).
+
+לאחר התחברות תועברו לתפריט הראשי הכולל את כל האפשרויות במערכת.
+
+### 🛠 הכלים בהם השתמשנו
+שפת תכנות: Python 3
+
+GUI: Tkinter (ספרייה גרפית פנימית ב־Python)
+
+מסד נתונים: PostgreSQL
+
+התחברות למסד: psycopg2 – מודול חיבור ל־PostgreSQL
+
+ניהול פרויקט: GitHub (כולל שימוש ב-TAGים לכל שלב)
+
+### 📂 מבנה המערכת
+main.py	מסך הבית הראשי, ניווט לכל שאר המסכים
+login_screen.py	מסך התחברות
+customer_crud.py	ניהול לקוחות: יצירה, עדכון, מחיקה, שליפה
+car_crud.py	ניהול רכבים
+rental_crud.py	ניהול השכרות – טבלה מקשרת בין לקוחות לרכבים
+reports_screen.py	מסך הפעלת שאילתות, פונקציות ופרוצדורות
+db_config.py	פרטי התחברות למסד הנתונים
+
+### 📋 מסכים שהמערכת כוללת
+✅ מסך התחברות (Login)
+
+✅ מסך ראשי – ניווט לכל המסכים
+
+✅ ניהול לקוחות (Customer CRUD)
+
+✅ ניהול רכבים (Car CRUD)
+
+✅ ניהול השכרות (Rental CRUD) – טבלה מקשרת
+
+✅ מסך דוחות:
+
+מאפשר הרצת שאילתות מורכבות משלב ב'
+
+מאפשר הפעלת פרוצדורות ופונקציות משלב ד'
+
+כולל טופס לקליטת פרמטרים (גיל / מזהה וכו')
+
+מציג את התוצאות בצורה טבלאית עם TreeView
+
+### 🔄 פונקציונליות מתקדמת שבוצעה
+שימוש בפרוצדורות שמבצעות INSERT/UPDATE
+
+הפעלת פונקציות עם RefCursor והצגת תוצאה
+
+הצגת שאילתות עם Join ו־Group By
+
+טיפול בשגיאות דרך הודעות popup
+
+אפשרות Logout מתוך המסך הראשי
+
+### 🖼 תמונות מסך
+
+#### מסך לוגין
+
+![התחלה](שלב%20ה/pictures_of_the_application/תמונה%20של%20WhatsApp‏%202025-06-13%20בשעה%2014.45.25_a6aabaf9.jpg)
+
+![סיסמת כניסה](שלב%20ה/pictures_of_the_application/תמונה%20של%20WhatsApp‏%202025-06-13%20בשעה%2014.45.25_88719950.jpg)
+
+![אישור](שלב%20ה/pictures_of_the_application/תמונה%20של%20WhatsApp‏%202025-06-13%20בשעה%2014.45.25_a6aabaf9.jpg)
+
+[קוד המסך](שלב%20ה/login_screen.py)
+
+#### מסך ראשי
+
+![מסך ראשי](שלב%20ה/pictures_of_the_application/תמונה%20של%20WhatsApp‏%202025-06-13%20בשעה%2014.45.26_8ac7ad2f.jpg)
+
+[קוד המסך](שלב%20ה/main.py)
+
+#### מסך לקוחות כולל רשימת לקוחות
+
+![מסך לקוחות](שלב%20ה/pictures_of_the_application/תמונה%20של%20WhatsApp‏%202025-06-13%20בשעה%2014.45.26_dae7931c.jpg)
+
+![שליפת הנתונים](שלב%20ה/pictures_of_the_application/תמונה%20של%20WhatsApp‏%202025-06-13%20בשעה%2014.45.29_5186557a.jpg)
+
+[קוד המסך](שלב%20ה/customer_crud.py)
+
+#### מסך רכבים
+
+![מסך הרכבים](שלב%20ה/pictures_of_the_application/תמונה%20של%20WhatsApp‏%202025-06-13%20בשעה%2014.45.26_e1021642.jpg)
+
+![שליפת הנתונים](שלב%20ה/pictures_of_the_application/תמונה%20של%20WhatsApp‏%202025-06-13%20בשעה%2014.45.29_3488d2fb.jpg)
+
+[קוד המסך](שלב%20ה/car_crud.py)
+
+#### מסך השכרות
+
+![מסך השכרות](שלב%20ה/pictures_of_the_application/תמונה%20של%20WhatsApp‏%202025-06-13%20בשעה%2014.45.26_cc128aa3.jpg)
+
+![שליפת הנתונים](שלב%20ה/pictures_of_the_application/תמונה%20של%20WhatsApp‏%202025-06-13%20בשעה%2014.45.29_f090cf6b.jpg)
+
+[קוד המסך](שלב%20ה/rental_crud.py)
+
+
+#### מסך דוחות עם תצוגה טבלאית
+
+![מסך השאילתות](שלב%20ה/pictures_of_the_application/תמונה%20של%20WhatsApp‏%202025-06-13%20בשעה%2014.45.26_6c68d279.jpg)
+
+[קוד המסך](שלב%20ה/reports_screen.py)
+
+##### שאילתות עם תוצאות
+
+![שאילת1](שלב%20ה/pictures_of_the_application/תמונה%20של%20WhatsApp‏%202025-06-13%20בשעה%2014.45.27_d4c39e9f.jpg)
+
+![שאילתא2](שלב%20ה/pictures_of_the_application/תמונה%20של%20WhatsApp‏%202025-06-13%20בשעה%2014.45.27_1c93833d.jpg)
+
+![שאילתא3](שלב%20ה/pictures_of_the_application/תמונה%20של%20WhatsApp‏%202025-06-13%20בשעה%2014.45.27_fa04e7ab.jpg)
+
+![שאילתא4](שלב%20ה/pictures_of_the_application/תמונה%20של%20WhatsApp‏%202025-06-13%20בשעה%2014.45.27_768c48dd.jpg)
+
+##### פרוצדורות ופונקציות עם תוצאות
+
+פונקציית לקוחות מעל גיל מסויים:
+
+![p1](שלב%20ה/pictures_of_the_application/תמונה%20של%20WhatsApp‏%202025-06-13%20בשעה%2014.45.27_41fa73e1.jpg)
+
+תוצאת השאילתא:
+
+![p2](שלב%20ה/pictures_of_the_application/תמונה%20של%20WhatsApp‏%202025-06-13%20בשעה%2014.45.27_63d0de8b.jpg)
+
+פונקציית עדכון עלות השכרה לפי מזהה:
+
+![p3](שלב%20ה/pictures_of_the_application/תמונה%20של%20WhatsApp‏%202025-06-13%20בשעה%2014.45.28_16eb660a.jpg)
+
+תוצאת השאילתא:
+
+![p4](שלב%20ה/pictures_of_the_application/תמונה%20של%20WhatsApp‏%202025-06-13%20בשעה%2014.45.28_baaa993e.jpg)
+
+פרוצדורת הוספת תחזוקה: 
+
+![p5](שלב%20ה/pictures_of_the_application/תמונה%20של%20WhatsApp‏%202025-06-13%20בשעה%2014.45.28_1bce0101.jpg)
+
+![p6](שלב%20ה/pictures_of_the_application/תמונה%20של%20WhatsApp‏%202025-06-13%20בשעה%2014.45.28_31a669ca.jpg)
+
+![p7](שלב%20ה/pictures_of_the_application/תמונה%20של%20WhatsApp‏%202025-06-13%20בשעה%2014.45.28_4273a756.jpg)
+
+![p8](שלב%20ה/pictures_of_the_application/תמונה%20של%20WhatsApp‏%202025-06-13%20בשעה%2014.45.29_c3923153.jpg)
+
+תוצאת השאילתא:
+
+![p9](שלב%20ה/pictures_of_the_application/תמונה%20של%20WhatsApp‏%202025-06-13%20בשעה%2014.45.29_5ed6061c.jpg)
+
+פרוצדורת סיכום רכבים לפי סניף:
+
+![p10](שלב%20ה/pictures_of_the_application/תמונה%20של%20WhatsApp‏%202025-06-13%20בשעה%2014.45.29_d62f1724.jpg)
+
 
 
 

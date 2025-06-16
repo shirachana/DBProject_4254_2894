@@ -36,7 +36,7 @@ def open_report_screen():
             messagebox.showerror("שגיאה", str(e))
 
     def run_function_with_param():
-        age = simpledialog.askinteger("פונקציה", "הכנס גיל:")
+        age = simpledialog.askinteger("פונקציה", ":הכנס גיל")
         if age is not None:
             try:
                 conn = get_connection()
@@ -52,7 +52,7 @@ def open_report_screen():
                 messagebox.showerror("שגיאה", str(e))
 
     def run_update_rental_cost():
-        rental_id = simpledialog.askinteger("עדכון עלות", "הכנס מזהה השכרה:")
+        rental_id = simpledialog.askinteger("עדכון עלות", ":הכנס מזהה השכרה")
         if rental_id:
             try:
                 conn = get_connection()
@@ -71,17 +71,17 @@ def open_report_screen():
 
     def run_add_maintenance():
         try:
-            car_id = simpledialog.askinteger("רכב", "הכנס מזהה רכב:")
-            desc = simpledialog.askstring("תיאור", "הכנס תיאור תחזוקה:")
-            cost = simpledialog.askfloat("מחיר", "הכנס מחיר תחזוקה:")
-            date = simpledialog.askstring("תאריך", "הכנס תאריך (YYYY-MM-DD):")
+            car_id = simpledialog.askinteger("רכב", ":הכנס מזהה רכב")
+            desc = simpledialog.askstring("תיאור", ":הכנס תיאור תחזוקה")
+            cost = simpledialog.askfloat("מחיר", ":הכנס מחיר תחזוקה")
+            date = simpledialog.askstring("תאריך", "הכנס תאריך: (YYYY-MM-DD)")
 
             if car_id and desc and cost and date:
                 conn = get_connection()
                 cur = conn.cursor()
                 cur.execute("CALL add_maintenance(%s, %s, %s, %s)", (car_id, desc, cost, date))
                 conn.commit()
-                messagebox.showinfo("הצלחה", "תחזוקה נוספה בהצלחה.")
+                messagebox.showinfo("הצלחה", ".תחזוקה נוספה בהצלחה")
                 cur.execute("SELECT * FROM Maintenance WHERE CarID = %s ORDER BY MaintenanceDate DESC LIMIT 5", (car_id,))
                 rows = cur.fetchall()
                 colnames = [desc[0] for desc in cur.description]
@@ -140,7 +140,7 @@ def open_report_screen():
                WHERE m.MaintenanceID IS NULL"""
     }
 
-    tk.Label(window, text="בחר שאילתה:").pack()
+    tk.Label(window, text=":בחר שאילתה").pack()
     query_combo = ttk.Combobox(window, values=list(queries.keys()), width=70)
     query_combo.pack(pady=5)
 
@@ -152,10 +152,10 @@ def open_report_screen():
     tk.Button(window, text="הרץ שאילתה", command=execute_selected_query).pack(pady=10)
 
     # פונקציות ופרוצדורות
-    tk.Label(window, text="פונקציות ופרוצדורות מתקדמות:").pack(pady=10)
-    tk.Button(window, text="פונקציה: לקוחות מעל גיל נתון", command=run_function_with_param).pack(pady=5)
-    tk.Button(window, text="פונקציה: עדכון עלות השכרה לפי מזהה", command=run_update_rental_cost).pack(pady=5)
-    tk.Button(window, text="פרוצדורה: הוספת תחזוקה", command=run_add_maintenance).pack(pady=5)
+    tk.Label(window, text=":פונקציות ופרוצדורות מתקדמות").pack(pady=10)
+    tk.Button(window, text="שליפת לקוחות מעל גיל נתון", command=run_function_with_param).pack(pady=5)
+    tk.Button(window, text="עדכון עלות השכרה לפי מזהה", command=run_update_rental_cost).pack(pady=5)
+    tk.Button(window, text="הוספת תחזוקה", command=run_add_maintenance).pack(pady=5)
     tk.Button(window, text="סיכום רכבים לפי סניף", command=run_branch_car_summary).pack(pady=5)
 
     # חזרה

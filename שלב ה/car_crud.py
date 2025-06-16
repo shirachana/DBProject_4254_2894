@@ -1,4 +1,3 @@
-
 import tkinter as tk
 from tkinter import messagebox, ttk
 import psycopg2
@@ -12,7 +11,8 @@ def open_car_screen():
     def close_to_main():
         window.destroy()
 
-    labels = ["Car ID", "Model", "Manufacturer", "NumSeats", "Status", "PricePerDay", "BranchID"]
+    # שמות השדות המעודכנים והנכונים:
+    labels = ["Car ID", "LicensePlate", "Model", "Manufacturer", "CYear", "Status", "PricePerDay", "NumSeats", "BranchID"]
     entries = []
     for i, label in enumerate(labels):
         tk.Label(window, text=label + ":").grid(row=i, column=0, sticky="e", padx=5, pady=5)
@@ -20,12 +20,12 @@ def open_car_screen():
         entry.grid(row=i, column=1, padx=5, pady=5)
         entries.append(entry)
 
-    columns = ("CarID", "Model", "Manufacturer", "NumSeats", "Status", "PricePerDay", "BranchID")
+    columns = ("CarID", "LicensePlate", "Model", "Manufacturer", "CYear", "Status", "PricePerDay", "NumSeats", "BranchID")
     tree = ttk.Treeview(window, columns=columns, show="headings", height=15)
     for col in columns:
         tree.heading(col, text=col)
         tree.column(col, width=100)
-    tree.grid(row=0, column=3, rowspan=10, padx=10, pady=10)
+    tree.grid(row=0, column=3, rowspan=12, padx=10, pady=10)
 
     def clear_fields():
         for entry in entries:
@@ -35,8 +35,10 @@ def open_car_screen():
         try:
             conn = get_connection()
             cur = conn.cursor()
-            cur.execute("INSERT INTO Car (CarID, Model, Manufacturer, NumSeats, Status, PricePerDay, BranchID) VALUES (%s, %s, %s, %s, %s, %s, %s)",
-                        tuple(entry.get() for entry in entries))
+            cur.execute("""
+                INSERT INTO Car (carid, licenseplate, model, manufacturer, cyear, status, priceperday, numseats, branchid)
+                VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
+            """, tuple(entry.get() for entry in entries))
             conn.commit()
             messagebox.showinfo("הצלחה", "רכב נוסף")
             cur.close()
@@ -51,8 +53,15 @@ def open_car_screen():
         try:
             conn = get_connection()
             cur = conn.cursor()
-            cur.execute("UPDATE Car SET Model=%s, Manufacturer=%s, NumSeats=%s, Status=%s, PricePerDay=%s, BranchID=%s WHERE CarID=%s",
-                        (entries[1].get(), entries[2].get(), entries[3].get(), entries[4].get(), entries[5].get(), entries[6].get(), entries[0].get()))
+            cur.execute("""
+                UPDATE Car
+                SET licenseplate=%s, model=%s, manufacturer=%s, cyear=%s, status=%s, priceperday=%s, numseats=%s, branchid=%s
+                WHERE carid=%s
+            """, (
+                entries[1].get(), entries[2].get(), entries[3].get(), entries[4].get(),
+                entries[5].get(), entries[6].get(), entries[7].get(), entries[8].get(),
+                entries[0].get()
+            ))
             conn.commit()
             messagebox.showinfo("הצלחה", "רכב עודכן")
             cur.close()
@@ -67,7 +76,7 @@ def open_car_screen():
         try:
             conn = get_connection()
             cur = conn.cursor()
-            cur.execute("DELETE FROM Car WHERE CarID=%s", (entries[0].get(),))
+            cur.execute("DELETE FROM Car WHERE carid=%s", (entries[0].get(),))
             conn.commit()
             messagebox.showinfo("הצלחה", "רכב נמחק")
             cur.close()
@@ -84,7 +93,7 @@ def open_car_screen():
         try:
             conn = get_connection()
             cur = conn.cursor()
-            cur.execute("SELECT * FROM Car ORDER BY CarID")
+            cur.execute("SELECT carid, licenseplate, model, manufacturer, cyear, status, priceperday, numseats, branchid FROM Car ORDER BY carid")
             rows = cur.fetchall()
             for row in rows:
                 tree.insert("", tk.END, values=row)
@@ -93,10 +102,10 @@ def open_car_screen():
         except Exception as e:
             messagebox.showerror("שגיאה", str(e))
 
-    tk.Button(window, text="הוספה", width=15, command=insert_car).grid(row=7, column=0, pady=10)
-    tk.Button(window, text="עדכון", width=15, command=update_car).grid(row=7, column=1)
-    tk.Button(window, text="מחיקה", width=15, command=delete_car).grid(row=8, column=0)
-    tk.Button(window, text="רענון", width=15, command=fetch_cars).grid(row=8, column=1)
-    tk.Button(window, text="חזרה למסך ראשי", width=25, command=close_to_main).grid(row=9, column=0, columnspan=2, pady=10)
+    tk.Button(window, text="הוספה", width=15, command=insert_car).grid(row=10, column=0, pady=10)
+    tk.Button(window, text="עדכון", width=15, command=update_car).grid(row=10, column=1)
+    tk.Button(window, text="מחיקה", width=15, command=delete_car).grid(row=11, column=0)
+    tk.Button(window, text="רענון", width=15, command=fetch_cars).grid(row=11, column=1)
+    tk.Button(window, text="חזרה למסך ראשי", width=25, command=close_to_main).grid(row=12, column=0, columnspan=2, pady=10)
 
     fetch_cars()
